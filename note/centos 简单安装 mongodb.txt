@@ -1,0 +1,40 @@
+概述
+    近日要在新的CentOS系统上安装MongoDB，某度结果后直接从Mongo官网直接获得3.2版本的下载链接，结果在下载时发觉速度慢的可怜。迫于无奈，只能找国内的镜像下载。切换国内的安装源后，使用yum的方式安装后发现，安装的MongoDB版本居然是2.8的。一番研究后，贴出以下操作方式，提供给后人操作。
+
+==============================================================
+
+操作过程
+
+1.首先更新一下包吧，多更无害
+sudo yum -y update
+
+2.在/etc/yum.repos.d 创建一个 mongodb-org.repo 文件
+sudo touch /etc/yum.repos.d/mongodb-org.repo
+
+3.编辑 mongodb-org.repo 文件
+sudo vi /etc/yum.repos.d/mongodb-org.repo
+
+4.输入以下内容后 保存退出
+
+[mongodb-org]
+name=MongoDB Repository
+baseurl=http://mirrors.aliyun.com/mongodb/yum/redhat/7Server/mongodb-org/3.2/x86_64/
+gpgcheck=0
+enabled=1
+
+5.安装MongoDB
+sudo yum install -y mongodb-org 
+　
+6.启动MongoDB
+sudo service mongod start
+
+7.设置开机启动
+sudo chkconfig mongod on
+
+8.打开MongoDB
+sudo /bin/mongo
+
+9.配置远程访问
+vim /etc/mongod.conf
+注释掉 bindIp: 127.0.0.1
+重启 sudo service mongod restart

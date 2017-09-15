@@ -1,0 +1,65 @@
+=============================================
+
+创建 package.json
+
+1. 
+npm init
+npm init -y
+
+2.
+yarn init -y
+
+=============================================
+
+使用内置 Node.js 模块
+
+const os = require('os');
+os.host
+
+---------------------------------
+
+使用第三方 Node.js 模块
+活跃社区:
+https://www.npmjs.com/
+
+举例:
+http request 模块
+https://www.npmjs.com/package/request
+
+1. npm install request --save
+--save 会将该模块添加入 package.json
+
+2. yarn add request
+
+---------------------------------
+
+使用自定义 Node.js 模块
+
+//greeting.js 
+function sayHello(name) {
+    console.log('Welcome ' + name);
+};
+module.exports.sayHello = sayHello;
+
+//index.js
+const greeting = require('./greeting');
+greeting.sayHello('Phalanx Song');
+
+=============================================
+
+nodemon：监视应用的变化自动重启应用 
+npm install nodemon --save
+npm 安装 不支持 windows
+yarn 不清楚
+
+=============================================
+
+Node.js 项目的版本控制
+ignore:
+1.node_modules
+
+=============================================
+
+
+
+

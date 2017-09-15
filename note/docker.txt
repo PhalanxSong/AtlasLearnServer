@@ -1,0 +1,70 @@
+centos 7.x 安装docker
+阿里云镜像 https://cr.console.aliyun.com/?spm=5176.1971733.0.2.60785837PfKFCN#/accelerator
+
+// 已安装的镜像
+docker images
+
+// 删除镜像
+docker rmi { name }
+
+docker search XXXXX
+
+docker pull XXXXX
+
+// 当前运行容器
+docker ps
+
+// 全部容器
+docker ps --all
+docker ps -a
+
+// 最后活跃容器
+docker ps -a -l
+
+// 使用镜像 centos 创建容器 并执行命令 /bin/echo 'hello'
+docker run centos /bin/echo 'hello'
+
+// 删除容器
+docker rm {container id / name ( can get from 'docker ps -a' )}
+
+// 创建容器并指定名字
+docker run --name custom_name centos /bin/echo 'test custom name'
+
+// 查看容器日志
+docker logs { container id / name }
+
+// 开始 停止 重启
+docker start { container id / name }
+docker stop { container id / name }
+docker restart { container id / name }
+
+// 交互容器
+docker run --interactive --tty centos /bin/bash
+docker run -i -t centos /bin/bash
+
+// 进入指定容器
+docker attach { container id / name }
+
+// 退出交互容器
+exit
+
+// 后台运行容器
+// 返回容器 id
+// 状态为 Up
+docker run --detach centos ping ninghao.net
+
+// 跟踪查看 log
+docker logs --follow { id / name }
+
+// 创建本地镜像
+// 由 docker images 查看
+docker commit -m '安装 nvm & nodejs 8.4.0' -a 'songlingyi' { id } songlingyi/nvm-nodejs-demo:notag
+
+// docker file 创建镜像
+https://ninghao.net/video/3778
+
+// 把镜像推送到 Docker Hub
+https://ninghao.net/video/3779
+
+// 把镜像推送到阿里云
+https://ninghao.net/video/3780

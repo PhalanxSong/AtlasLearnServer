@@ -1,0 +1,103 @@
+宁皓网 《Git：版本控制》 Git Version Control
+https://ninghao.net/course/1882
+
+====================================================
+
+常见问题:
+
+1.安装:
+    linux 下 yum install git bash-completion
+    windows 官网下载
+
+2.自动补全 tab 功能有问题:
+    linux centos 下 yum install bash-completion 并重新打开终端
+    其它平台 http://blog.csdn.net/sweettool/article/details/70545713
+
+====================================================
+
+配置分3个级别
+system
+global
+repository
+
+cat ~/.gitconfig
+cat /root/.gitconfig
+可能不存在，最好先做任意配置后，find / -name .gitconfig*
+
+查看 git config
+git config --list
+
+设置 git config
+git config --global user.name 'Phalanx Song'
+git config --global user.email '451768447@qq.com'
+git config --global color.ui true
+git config --unset --global use.name
+
+设置 git 命令 的 alias
+git config --global alias.ck checkout
+git config --global alias.br branch
+
+忽略跟踪文件 - 全局级别
+git config --global core.excludesfile ~/.gitignore_global
+
+忽略跟踪文件 - 项目级别
+vim .gitignore
+
+====================================================
+
+本地创建 repository
+git init
+
+恢复刚刚删除或修改的文件
+git checkout HEAD^ -- target_file.txt  恢复追溯1次提交
+git checkout HEAD^^ -- target_file.txt  恢复追溯2次提交
+
+保存 恢复 删除 工作进度
+git stash save '修改了 XXX 文件'
+git stash list 查看保存进度的列表
+git stash show -p {stash id} 查看差异
+git stash apply {stash id} 恢复进度
+git stash drop {stash id} 删除进度
+git stash pop {stash id} 恢复进度 同时 删除该进度
+
+git log 查看日志
+https://ninghao.net/video/1902
+git log
+git log --oneline
+git log --oneline -5
+git log --oneline --author='PhalanxSong'
+git log --oneline --grep='target_file.txt'
+git log --oneline --before='2017-06-25'
+git log --oneline --before='1 week'
+git log --oneline --before='3 days'
+
+====================================================
+
+使用远程库
+
+创建远程
+git remote add {remote name mostlt use origin} {remote repository http}
+
+查看远程
+git remote
+git remote -video
+
+移除远程
+git remote rm {remote name}
+
+或直接 clone 
+git clone {remote repository ssh/http}
+
+拉取
+git pull = git fetch + git merge
+
+标签
+git tag 查看全部 tag
+git tag -d {tag name} 查看具体 tag
+git tag -a {tag name} -m {message} 创建 tag
+git tag -a {tag name} {commit id} -m {message} 由指定 commit 创建 tag
+
+git push origin {tag name}
+git push --tags 推送全部 tag
+
+git checkout {tag name}
