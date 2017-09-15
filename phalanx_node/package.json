@@ -1,16 +1,16 @@
 {
-  "name": "phalanx_node",
-  "version": "1.0.0",
-  "description": "phalanx song learn nodejs project...",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "PhalanxSong",
-  "license": "ISC",
-  "dependencies": {
-    "nodemon": "^1.12.0",
-    "request": "^2.81.0"
-  }
+    "name": "phalanx_node",
+    "version": "1.0.0",
+    "description": "phalanx song learn nodejs project...",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "PhalanxSong",
+    "license": "ISC",
+    "dependencies": {
+        "nodemon": "^1.12.0",
+        "request": "^2.81.0"
+    }
 }

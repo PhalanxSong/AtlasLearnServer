@@ -1,5 +1,5 @@
 var events = require('events');
-class Player extends events.EventEmitter { }
+class Player extends events.EventEmitter {};
 
 var player = new Player();
 
