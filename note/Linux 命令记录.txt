@@ -1,0 +1,116 @@
+﻿Linux  阿里云服务器学习
+
+yum  (Yellow dog Update, Modified)
+自动解决依赖问题
+
+磁盘挂载：
+
+df -h     看可用磁盘与挂载点
+fdisk -l 列出全部磁盘信息
+fdisk +磁盘位置（从 -l 中看未登陆磁盘）  先n  再p  再1
+mkfs.ext3 /磁盘位置     格式化磁盘，ext3 是一种文件格式
+
+控制开机自动挂载
+echo "/dev/xvdb1(磁盘名) /mnt(挂载点) ext3(文件格式) defaults 0 0" >> /etc/fstab  
+/etc/fstab 为全部挂载信息文件，可查看
+
+
+安装 Apache
+yum install httpd
+service httpd start   stop  restart  status（查看状态）
+chkconfig --list  查看服务列表
+（20160312 与宁皓网效果不一致 http://ninghao.net/video/533）
+
+Apache配置文件备份
+一般 apache 配置文件在 /etc/httpd/conf   下的  httpd.conf   
+最好备份这个文件，以防出现问题
+vim 查看Apache配置文件 
+查找内容  ？+内容
+？+DocumentRoot             N键找下一个位置
+可以找到 默认网站发布目录
+如  DocumentRoot "/var/www/html"
+
+创建虚拟主机（由于没有域名，暂时跳过）
+
+打开地址重写功能
+先让 apache 加载 rewrite 模块
+Apache模块验证      apachectl -M   找有没有 rewrite
+然后进入 apache 配置文件  （ /etc/httpd/conf   下的  httpd.conf   ）
+找 FollowSymLinks  改 位置 和 AllowOverride None 改为 All
+service httpd reload
+
+
+
+阿里云 centos7 安装配置 MySQL
+
+在CentOS 7和CentOS 7.1系统中，默认安装的mysql是它的分支mariadb
+MariaDB数据库管理系统是MySQL的一个分支，主要由开源社区在维护，采用GPL授权许可 MariaDB的目的是完全兼容MySQL，包括API和命令行，使之能轻松成为MySQL的代替品。
+
+Linux系统自带的repo是不会自动更新每个软件的最新版本（基本都是比较靠后的稳定版），所以无法通过yum方式安装MySQL的高级版本。所以我们需要先安装带有当前可用的mysql5系列社区版资源的rpm包。
+rpm -Uvh http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm
+
+查看当前yum可用的mysql安装资源
+yum repolist enabled | grep "mysql.*-community.*"
+yum search xxx
+
+安装mysql
+yum -y install mysql-community-server
+
+设置mysql安全
+mysql_secure_installation 后按照提示操作
+
+
+安装PHP
+没有就要加其它 yum源 
+查看yum源  /etc/yum/yum.re???
+
+yum install php php-pear php-cli php-common php-devel php-gd php-mbstring php-mcrypt php-mysql php-pdo php-soap php-xml php-xmlrpc php-bcmath php-pecl-apc php-pecl-memcache php-snmp
+
+检查php是否正常运行
+安装完 service httpd restart
+随便放一行php代码到 页面
+echo "<?php phpinfo() ?>" >> phpinfo.php
+注意 .php文件才用php解析
+php配置文件一般在 /etc/php.ini
+
+
+安装与配置 FTP 服务器
+yum install vsftpd
+修改配置
+vim /etc/vsftpd/vsftpd.conf
+修改 anonymous_endable=NO  不允许匿名用户登陆FTP
+创建一个用户
+useradd -d /var/www/html/ -s /sbin/nologin phalanx
+注释
+1. -d /var/www/html/ 用户phalanx 只能访问 文件夹 /var/www/html/ 
+2. -s /sbin/nologin 不能远程登录
+
+为phalanx设置一个密码
+passwd phalanx
+
+令phalanx可以管理这个目录
+更改目录的所有者
+chown -R phalanx /var/www/html
+更改权限
+chmod -R 755 /var/www/html
+
+在本地下载 ftp 客户端，宁皓网 filezilla
+http://filezilla-project.org/download.php?type=client
+
+phpMyAdmin 按流程
+
+Joomla 安装 按流程
+
+Drupal 安装 配置设置文件
+cp drupal/sites/default/default.settings.php drupal/sites/default/settings.php 
+改变 default 目录 权限
+chmod a+w -R drupal/sites/default
+然后进入界面安装   上面的 w权限可以写入，在安装时会在settings里写入东西，同时创建files文件夹
+注意：drupal/sites/default 下的 files文件夹 的 所有者和创建者均为 apache！
+
+之后修改权限
+chmod 755 drupal/sites/default    打开default权限
+chmod 644 drupal/sites/default/settings.php   防止他人修改settings文件
+
+wordpress 安装
+安装完成后，想上传文件 需要将  wordpress/wp-content 所有者改为 apache
