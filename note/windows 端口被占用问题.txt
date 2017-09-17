@@ -1,0 +1,10 @@
+1、根据端口号 "3000" 查找进程号
+netstat -ano|findstr "3000"
+TCP    0.0.0.0:80             0.0.0.0:0              LISTENING       7796
+
+2、根据进程号 "7796" 查找进程名
+tasklist|findstr 7796
+node.exe                      7796 Console                    1     57,368 K
+
+3、根据进程名杀死进程
+taskkill /f /t /im node.exe
