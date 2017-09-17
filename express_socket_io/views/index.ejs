@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> -- Socket.IO -- </title>
+</head>
+
+<body>
+    <h1> -- Phalanx Song Socket.IO -- </h1>
+    <form action="">
+        <input type="text" name="message" id="message" value="">
+        <button> send </button>
+    </form>
+    <div id="message-board"></div>
+    <script src="http://code.jquery.com/jquery-latest.js" charset="utf-8"></script>
+    <script src="/socket.io/socket.io.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        let socket = io();
+        $('form').submit(function () {
+            socket.emit('message', $('#message').val());
+            $('#message').val('');
+            return false;
+        });
+        socket.on('message', function (message) {
+            $('#message-board').append($('<div>').text(message));
+        });
+    </script>
+</body>
+
+</html>
