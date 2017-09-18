@@ -1,3 +1,4 @@
 1. npm install nrm -g
-2. nrm test 测试各类源的速度
-3. nrm use taobao
+2. nrm ls 列出可用源
+3. nrm test 测试各类源的速度
+4. nrm use taobao
