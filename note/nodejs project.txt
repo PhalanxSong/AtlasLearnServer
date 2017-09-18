@@ -31,6 +31,15 @@ https://www.npmjs.com/package/request
 
 2. yarn add request
 
+3. npm install mocha --global
+--global 全局安装 -g
+
+4. npm install mocha --save-dev
+-dev 区分 "dependencies" "devDependencies"
+
+5. npm uninstall request -g
+删除包
+
 ---------------------------------
 
 使用自定义 Node.js 模块

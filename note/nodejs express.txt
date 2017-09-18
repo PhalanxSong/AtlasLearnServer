@@ -1,0 +1,123 @@
+=============================================
+
+准备
+https://ninghao.net/video/4621
+当 源码被修改后 自动重新运行 index.js
+
+1. npm init - y
+2. npm install nodemon babel - cli babel - preset - es2015 babel - preset - stage - 0 - y
+3.
+"scripts": 
+{
+  "start": "./node_modules/.bin/nodemon --exec babel-node index.js"
+}
+4. 创建.babelrc 
+{"presets": ["es2015", "stage-0"]}
+5. 创建 index.js
+
+查看效果
+
+$ npm start
+
+> phalanx_express@1.0.0 start c:\Users\PC\Desktop\AtlasLearnServer\phalanx_express
+> nodemon --exec babel-node index.js
+
+[nodemon] 1.12.1
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching: *.*
+[nodemon] starting `babel-node index.js`
+[nodemon] clean exit - waiting for changes before restart
+
+=============================================
+
+安装 express
+
+1. 查看 express 版本
+npm view express versions -json
+
+2. 安装
+npm install express@5.0.0-alpha.5 --save
+npm install express --save
+
+测试代码:
+
+^ import express from 'express';
+^ 
+^ const app = express();
+^ 
+^ app.get('/', (request, response) => {
+^     response.send('hello... this is an express project... use port : 3000');
+^ });
+^ 
+^ app.listen(3000, () => {
+^     console.log('Listen port : 3000');
+^ });
+
+=============================================
+
+使用 Middleware：中间件 
+
+1. morgan 记录 request 日志 的 中间件
+npm install morgan --save
+
+^ import express from 'express';
+^ import morgan from 'morgan';
+^ const app = express();
+^ app.use(morgan('dev'));
+
+=============================================
+
+使用 Views：视图 
+https://ninghao.net/video/4625
+
+1. ejs 视图引擎
+npm install ejs --save
+
+2. 创建 views 文件夹
+
+3. 创建 index.ejs 并填入基本 html 视图
+
+^ <!DOCTYPE html>
+^ <html lang="en">
+^ 
+^ <head>
+^     <meta charset="UTF-8">
+^     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+^     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+^     <title>Express</title>
+^ </head>
+^ 
+^ <body>
+^     <h1>hello... this is an express project... use port : 3000</h1>
+^ </body>
+^ 
+^ </html>
+
+4. 测试 index.js
+
+^ import express from 'express';
+^ import morgan from 'morgan';
+^ import path from 'path';
+^ 
+^ const app = express();
+^ 
+^ app.use(morgan('dev'));
+^ 
+^ app.set('views',path.resolve(__dirname,'views'));
+^ app.set('view engine','ejs');
+^ 
+^ app.get('/', (request, response) => {
+^     //response.send('hello... this is an express project... use port : 3000');
+^     response.render('index');
+^ });
+^ 
+^ app.listen(3000, () => {
+^     console.log('Listen port : 3000');
+^ });
+
+=============================================
+
+定义 Route：路由
+发表评论
+显示评论列表
+https://ninghao.net/video/4626
