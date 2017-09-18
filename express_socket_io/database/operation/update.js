@@ -1,4 +1,4 @@
-const Event = require('../models/event');
+const Event = require('../../models/event');
 
 let id = '59ba4c26967c962aeb74fa95';
 let body = {

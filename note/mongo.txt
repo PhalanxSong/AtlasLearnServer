@@ -1,0 +1,190 @@
+========================================
+mongo shell
+
+启动 mongo
+帮助 help
+
+db.help()                    help on db methods
+db.mycoll.help()             help on collection methods
+sh.help()                    sharding helpers
+rs.help()                    replica set helpers
+help admin                   administrative help
+help connect                 connecting to a db help
+help keys                    key shortcuts
+help misc                    misc things to know
+help mr                      mapreduce
+
+show dbs                     show database names
+show collections             show collections in current database
+show users                   show users in current database
+show profile                 show most recent system.profile entries with time >= 1ms
+show logs                    show the accessible logger names
+show log [name]              prints out the last segment of log in memory, 'global' is default
+use <db_name>                set current database
+db.foo.find()                list objects in collection foo
+db.foo.find( { a : 1 } )     list objects in foo where a == 1
+it                           result of the last line evaluated; use to further iterate
+DBQuery.shellBatchSize = x   set default number of items to display on shell
+exit                         quit the mongo shell
+
+----------------------------------------
+
+> db
+phalanxdb
+
+> show dbs
+local      0.000GB
+phalanxdb  0.000GB
+
+> use ninghao-mongo
+switched to db ninghao-mongo
+> db
+ninghao-mongo
+
+> db.albums.insertOne({title:"18 and life"})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("59bd3a50568f4e1c959a5944")
+}
+
+> db.albums.find()
+{ "_id" : ObjectId("59bd3a50568f4e1c959a5944"), "title" : "18 and life" }
+
+> db.albums.insertMany([{title:"极乐净土"},{title:"回梦游仙"},{title:"silent hill"}])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("59bd4076568f4e1c959a5945"),
+                ObjectId("59bd4076568f4e1c959a5946"),
+                ObjectId("59bd4076568f4e1c959a5947")
+        ]
+}
+> db.albums.find()
+{ "_id" : ObjectId("59bd3a50568f4e1c959a5944"), "title" : "18 and life" }
+{ "_id" : ObjectId("59bd4076568f4e1c959a5945"), "title" : "极乐净土" }
+{ "_id" : ObjectId("59bd4076568f4e1c959a5946"), "title" : "回梦游仙" }
+{ "_id" : ObjectId("59bd4076568f4e1c959a5947"), "title" : "silent hill" }
+>
+
+> db.albums.insert([{title:"光辉岁月"},{title:"亡灵序曲"}])
+BulkWriteResult({
+        "writeErrors" : [ ],
+        "writeConcernErrors" : [ ],
+        "nInserted" : 2,
+        "nUpserted" : 0,
+        "nMatched" : 0,
+        "nModified" : 0,
+        "nRemoved" : 0,
+        "upserted" : [ ]
+})
+> db.albums.find()
+{ "_id" : ObjectId("59bd3a50568f4e1c959a5944"), "title" : "18 and life" }
+{ "_id" : ObjectId("59bd4076568f4e1c959a5945"), "title" : "极乐净土" }
+{ "_id" : ObjectId("59bd4076568f4e1c959a5946"), "title" : "回梦游仙" }
+{ "_id" : ObjectId("59bd4076568f4e1c959a5947"), "title" : "silent hill" }
+{ "_id" : ObjectId("59bd431b568f4e1c959a5948"), "title" : "光辉岁月" }
+{ "_id" : ObjectId("59bd431b568f4e1c959a5949"), "title" : "亡灵序曲" }
+
+
+> db.albums.updateMany({}, {
+...     $set: {
+...         artist: "Beyond"
+...     }
+... })
+{ "acknowledged" : true, "matchedCount" : 6, "modifiedCount" : 6 }
+> db.albums.find()
+{ "_id" : ObjectId("59bd3a50568f4e1c959a5944"), "title" : "18 and life", "artist" : "Beyond" }
+{ "_id" : ObjectId("59bd4076568f4e1c959a5945"), "title" : "极乐净土", "artist" : "Beyond" }
+{ "_id" : ObjectId("59bd4076568f4e1c959a5946"), "title" : "回梦游仙", "artist" : "Beyond" }
+{ "_id" : ObjectId("59bd4076568f4e1c959a5947"), "title" : "silent hill", "artist" : "Beyond" }
+{ "_id" : ObjectId("59bd431b568f4e1c959a5948"), "title" : "光辉岁月", "artist" : "Beyond" }
+{ "_id" : ObjectId("59bd431b568f4e1c959a5949"), "title" : "亡灵序曲", "artist" : "Beyond" }
+
+> db.albums.updateOne({
+...     title: "18 and life"
+... }, {
+...     $set: {
+...         artist: "Skid Row"
+...     }
+... })
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+> db.albums.find()
+{ "_id" : ObjectId("59bd3a50568f4e1c959a5944"), "title" : "18 and life", "artist" : "Skid Row" }
+{ "_id" : ObjectId("59bd4076568f4e1c959a5945"), "title" : "极乐净土", "artist" : "Beyond" }
+{ "_id" : ObjectId("59bd4076568f4e1c959a5946"), "title" : "回梦游仙", "artist" : "Beyond" }
+{ "_id" : ObjectId("59bd4076568f4e1c959a5947"), "title" : "silent hill", "artist" : "Beyond" }
+{ "_id" : ObjectId("59bd431b568f4e1c959a5948"), "title" : "光辉岁月", "artist" : "Beyond" }
+{ "_id" : ObjectId("59bd431b568f4e1c959a5949"), "title" : "亡灵序曲", "artist" : "Beyond" }
+
+deleteOne
+deleteMany
+remove
+
+db.albums.updateOne({
+    title: "18 and life"
+}, {
+    $set: {
+        artist: "Skid Row"
+    }
+})
+
+// 查找文档并限制返回的字段
+// 查找 year 为 1994 的 全部文档
+// 输出 title year 字段
+// 不输出 _id 字段
+db.movies.find({
+    year: 1994
+}, {
+    title: 1,
+    year: 1,
+    _id: 0
+})
+
+// 输出 符合条件的文档 的 数量
+db.movies.find({}, {
+    title: 1,
+    year: 1,
+    "rating.averange": 1,
+    _id: 0
+}).size()
+
+// 限制查询 10 个文档 并 跳过 前 5 个文档 输出
+db.movies.find({}, {
+    title: 1,
+    year: 1,
+    "rating.averange": 1,
+    _id: 0
+}).limit(10).skip(5)
+
+// 以 rating.averange 降序排列
+// -1 为 升序排列
+db.movies.find({}, {
+    title: 1,
+    year: 1,
+    "rating.averange": 1,
+    _id: 0
+}).sort({
+    "rating.averange": 1
+})
+
+// 查询操作符 $gt $lt 等
+db.movies.find({
+    "rating.averange": {
+        $gt: 9.5
+    }
+}, {
+    title: 1,
+    "rating.averange": 1,
+    _id: 0
+})
+
+// 查询操作符：包含与不包含 - $in 与 $nin 
+db.movies.find({
+    genres: {
+        $in: ["犯罪", "剧情"]
+    }
+}, {
+    title: 1,
+    genres: 1,
+    _id: 0
+})

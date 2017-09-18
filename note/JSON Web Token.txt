@@ -1,0 +1,67 @@
+JSON Web Token
+JWT
+
+3 parts:
+header: algorithm & token type
+payload: data
+verify signature
+
+---------------------------------------
+
+const jwt = require('jsonwebtoken');
+
+// 默认签名算法 HS256 对称算法 签发和验证使用相同密码
+
+// 创建与签发
+const payload = {
+    name: 'PhalanxSong',
+    admin: true
+};
+const secret = 'I_LOVE_PHALANXSONG';
+const token = jwt.sign(payload, secret);
+console.log(token);
+
+// 验证与解码
+jwt.verify(token, secret, (error, decoded) => {
+    if (error) {
+        console.log(error.message);
+        return;
+    }
+    console.log(decoded);
+});
+
+// RS256 非对称算法 使 签发和验证使用不同密码
+// private key & public key
+
+// 生成私钥
+ssh - keygen - t rsa - b 2048 - f private.key
+// 生成公钥
+openssl rsa - in private.key - pubout - outform PEM - out public.key
+// 删除中间文件
+rm - rf private.key.pub
+
+const jwt = require('jsonwebtoken');
+const fs = require('fs');
+
+// 创建与签发
+const payload = {
+    name: 'PhalanxSong',
+    admin: true
+};
+const privateKey = fs.readFileSync('./config/private.key');
+const token = jwt.sign(payload, privateKey, {
+    algorithm: 'RS256'
+});
+console.log(token);
+
+// 验证与解码
+const publicKey = fs.readFileSync('./config/public.key');
+jwt.verify(token, publicKey, (error, decoded) => {
+    if (error) {
+        console.log(error.message);
+        return;
+    }
+    console.log(decoded);
+});
+
+---------------------------------------

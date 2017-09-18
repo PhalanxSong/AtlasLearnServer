@@ -1,0 +1,6 @@
+
+// 自动重启 server.js
+./node_modules/.bin/nodemon server.js
+
+// windows 启动 mongodb server
+mongod --dbpath D:\MongoDBData
