@@ -7,9 +7,3 @@ mongod --dbpath {your data cache dir}
 
 4.将 mongo server 设定为 windows service
 mongod.exe --logpath {your log file} --logappend --dbpath {your data cache dir} --directoryperdb --serviceName MongoDB --install
-
-
-
-
-
-mongod.exe --logpath D:\MongoData\log\mongodb.log --logappend --dbpath D:\MongoData\data --directoryperdb --serviceName MongoDB --install
