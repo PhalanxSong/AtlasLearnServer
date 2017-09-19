@@ -68,3 +68,112 @@ https://ninghao.net/video/3779
 
 // 把镜像推送到阿里云
 https://ninghao.net/video/3780
+
+---------------------------------------------------------
+
+《 Docker：网络 》
+
+// 查看网络
+docker network ls
+
+网络类型
+bridge 需要绑定端口 默认
+host 完全开放
+none 与外界隔离
+
+// 查看各类型网络信息
+docker network inspect bridge/host/none
+
+// 设置桥接端口 外界访问 2222 端口时 桥接 至 容器 80 端口
+docker run -d --name web_test -p 2222:80 nginx
+
+// 创建自定义网络
+docker network create --driver bridge my_custom_web
+docker network inspect my_custom_web
+
+// 将容器创建于指定网络
+docker run -d --name web_test --net my_custom_web nginx
+
+// 将已存在的容器 链接/断开 网络
+docker network connect my_custom_web web_test_1
+docker network connect my_custom_web web_test_2
+docker network disconnect my_custom_web web_test_1
+
+---------------------------------------------------------
+
+《 Docker：组合 》
+
+docker-compose.yml
+
+# ninghao 示例
+
+version: '2'
+# 服务
+services:
+  phoenix:
+    # 使用镜像
+    image: nginx
+    # 使用端口
+    ports:
+      - "8080:80"
+    # 所属网络
+    # 以下设置中 phoenix 能与 dragon & monkey Ping 通 
+    networks: 
+      - "fairyland"
+      - "default"
+    # phoenix & dragon 的 /mnt 是相同目录
+    # phoenix & dragon 的 /usr/share/nginx/html 为 项目中的 ./app/web 目录
+    volumes:
+      - nest:/mnt
+      - ./app/web:/usr/share/nginx/html
+  dragon:
+    image: nginx
+    ports:
+      - "8081:80"
+    networks: 
+      - "fairyland"
+    volumes:
+      - nest:/mnt
+      - ./app/web:/usr/share/nginx/html
+  monkey:
+    image: nginx
+    ports:
+      - "8082:80"
+    networks: 
+      - "default"
+# 网络
+# 网络 default 会 自动添加
+networks: 
+  fairyland:
+    driver: bridge
+# 数据卷
+volumes:
+  nest:
+    driver: local
+
+# xSpace asset server
+version: '2'
+services:
+  web:
+    command: npm run dev
+    build: .
+    volumes:
+      - ./:/app
+    ports:
+      - "8001:8001"
+    links:
+      - mongo
+    environment:
+      - MONGO_DB_URI=mongodb://mongo:27017/tsm-server
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes_from:
+      - mongodata
+  mongodata:
+    image: tianon/true
+    volumes:
+      - /data/db
+
+---------------------------------------------------------
