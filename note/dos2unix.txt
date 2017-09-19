@@ -1,1 +1,9 @@
+linux sh 运行命令有时会被 \r ^M 等 dos 转义符干扰
+解决办法
+
+1.
 sed -i "s/\r//" start-server.sh
+
+2.
+yum install dos2unix
+dos2unix start-server.sh
