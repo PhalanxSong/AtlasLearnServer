@@ -1,0 +1,22 @@
+1. VPN
+--- Shadowsocks
+--- Lantern
+
+2. Google Chrome
+
+3. 
+--- Visual Studio 2015
+--- Visual Studio 2017
+
+4. 
+--- Visual Studio Code
+--- Atom
+
+5. windows terminal
+--- cmd
+--- powershell
+--- cmder
+
+cmder : windows 平台下完全代替 cmd 的 linux 命令行工具
+小技巧 : 将 exe 加入 右键执行列表
+.\Cmder.exe /REGISTER ALL
