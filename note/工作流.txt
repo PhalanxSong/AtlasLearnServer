@@ -19,4 +19,5 @@
 
 cmder : windows 平台下完全代替 cmd 的 linux 命令行工具
 小技巧 : 将 exe 加入 右键执行列表
+使用管理员权限
 .\Cmder.exe /REGISTER ALL
