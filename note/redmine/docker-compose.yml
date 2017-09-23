@@ -1,0 +1,16 @@
+postgresql:
+  image: postgres
+  environment:
+    - DB_USER=redmine
+    - DB_PASS=itisredmine
+    - DB_NAME=redmine_production
+redmine:
+  image: redmine
+  links:
+    - postgresql:postgresql
+  environment:
+    - DB_USER=redmine
+    - DB_PASS=itisredmine
+    - DB_NAME=redmine_production
+  ports:
+    - "10080:3000"

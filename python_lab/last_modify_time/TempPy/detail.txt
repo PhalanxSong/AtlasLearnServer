@@ -1,0 +1,3 @@
+latest_modify_file : C:\Users\PC\Desktop\PythonLab\last_modify_time\ExampleFolder
+latest_modify_time : 1496739321.2218
+latest_modify_time_pretty :time.struct_time(tm_year=2017, tm_mon=6, tm_mday=6, tm_hour=16, tm_min=55, tm_sec=21, tm_wday=1, tm_yday=157, tm_isdst=0)

@@ -1,0 +1,67 @@
+1 --Debug-- cursory .cpp file count : 1437
+2 --Debug-- cursory .h file count : 1440
+3 --Warning-- no .h file : C:\xBuild\Plugins\TSMUtils\Source\TSMUtils\Private\Pawn\FocusInputEventListner.cpp
+4 --Warning-- no .h file : C:\xBuild\Plugins\UnitPackages\Archiving\Source\Archiving\Private\SaveLoadUnit\Tests\DoLoadSystemActorTest.cpp
+5 --Warning-- no .cpp file : C:\xBuild\Plugins\TSMRuntime\Source\MessageHub\Public\MessageHub.h
+6 --Warning-- no .cpp file : C:\xBuild\Plugins\TSMRuntime\Source\UnitCore\Public\UnitCore.h
+7 --Warning-- no .cpp file : C:\xBuild\Plugins\TSMUtils\Source\TSMUtils\Public\Pawn\FocusInputEventListener.h
+8 --Warning-- no .cpp file : C:\xBuild\Plugins\UnitPackages\Editing\Source\Editing\Private\DimensionCompUnit\Utils\TSMShiftingSegment.h
+9 --Warning-- no .cpp file : C:\xBuild\Plugins\UnitPackages\Playground\Source\Playground\Private\WebBrowser\WebBrowserConsts.h
+10 --Debug-- after remove .cpp file count : 1435
+11 --Debug-- after remove .h file count : 1435
+12 --Debug-- all file are utf-8
+13 --Debug-- head cpp list count : 1435
+14 --Warning-- not start with A system : WorldScaleChangeCustomPathSystem
+15 --Warning-- not start with A system : RotationHandleWorldScaleSystem
+16 --Warning-- not start with A system : TriggerBrickShowingSystem
+17 --Warning-- not start with A system : ChangeAudioEventsSystemSystem
+18 --Warning-- not start with A system : CreateGroupActorSys
+19 --Warning-- not start with A system : DestoryContainEntitySystem
+20 --Warning-- not start with A system : LoadMapFoldersListSys
+21 --Warning-- not start with A system : HandleTPErasedSys
+22 --Warning-- not start with A system : HandleTPRebornSys
+23 --Warning-- not start with A system : HandleMaterialEntityErasedSys
+24 --Warning-- not start with A system : HandleMaterialEntityReConSys
+25 --Debug-- AbstractSystem count : 47
+26 --Debug-- ACompSystem count : 47
+27 --Debug-- ARequestHandlerSystem count : 482
+28 --Warning-- system name != file name : WalkSystemActor WalkSystem
+29 --Warning-- system name != file name : GetDynamicEffectInfoSystem GetAnimationInfoSystem
+30 --Warning-- system name != file name : ChangeShowEffectMode ChangeShowEffectModeSystem
+31 --Warning-- system name != file name : DragCopySystemActor DragCopySystem
+32 --Warning-- system name != file name : DestroyContainEntitySystem DestoryContainEntitySystem
+33 --Warning-- system name != file name : NaviHandleClearWolrdSystem NaviHandleClearWorldSystem
+34 --Warning-- system name != file name : JetBeginSystemActor JetBeginSystem
+35 --Warning-- system name != file name : WalkBeginSystemActor WalkBeginSystem
+36 --Warning-- system name != file name : WalkEndSystemActor WalkEndSystem
+37 --Error-- an empty handled req system : ARequestHandlerSystem
+38 --Debug-- get handled request system count : 483
+39 --Debug-- UnitRegister count : 90
+40 --Debug-- no registered system UnitRegister : LightmapLibUnitRegister
+41 --Debug-- no registered system UnitRegister : FundamentUnitRegister
+42 --Debug-- no registered system UnitRegister : PrimitiveCompUnitRegister
+43 --Debug-- no registered system UnitRegister : PrimitiveEntityUnitRegister
+44 --Debug-- all registered system count : 569
+45 --Warning-- hard code in message : HtmlUIBridgeUnitRegister
+46 --Warning-- hard code in message : EffectManageUnitRegister
+47 --Warning-- hard code in message : FollowPawnUnitRegister
+48 --Debug-- all different message count : 93
+49 --Debug-- all handled request count : 483
+50 --Debug-- all system send request count : 340
+51 --Debug-- all message send request count : 207
+52 --Debug-- all exist request count : 493
+53 --Warning-- no handled request count : 10
+54 --Warning-- no handled request : GlobalRequestPath::CloseContextMenu::Path()
+55 --Warning-- no handled request : CustomPathRequest::WorldScaleChangeCustomPath::Path()
+56 --Warning-- no handled request : TriggerReqs::TriggerBrickEditMod::Enter()
+57 --Warning-- no handled request : TriggerReqs::TriggerBrickEditMod::Leave()
+58 --Warning-- no handled request : MaterialReq::OpenMultiMediaMenu
+59 --Warning-- no handled request : MyObjReqPath::OpenMyObjMenu
+60 --Warning-- no handled request : NaviUnitReq::OpenDirSpaceDoorMenu
+61 --Warning-- no handled request : UndoRedoReq::LoadSysMenu()
+62 --Warning-- no handled request : WebBrowserUnitReq::InsertWebBrowserButton
+63 --Warning-- no handled request : AManageRaycastButtonSystem::S_C_FS_Req_ManageRaycastButton
+64 --Debug-- req which not send by msg and req count : 174
+65 --Debug-- handled req which not send by msg and req count : 174
+66 --Debug-- output file : c:\Users\PC\Desktop\PythonLab\biko_fresco\output\biko_fresco.json
+67 --Debug-- output log file : c:\Users\PC\Desktop\PythonLab\biko_fresco\output\biko_fresco_log.txt

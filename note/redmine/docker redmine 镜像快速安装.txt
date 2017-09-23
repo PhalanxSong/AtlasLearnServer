@@ -1,0 +1,26 @@
+阿里云ECS + CentOS 7.0 + Docker + Redmine环境搭建
+http://www.cnblogs.com/iluzhiyong/p/redmine.html
+
+---------------------------------
+使用 docker-compose.yml 文件
+
+postgresql:
+  image: postgres
+  environment:
+    - DB_USER=redmine
+    - DB_PASS=itisredmine
+    - DB_NAME=redmine_production
+redmine:
+  image: redmine
+  links:
+    - postgresql:postgresql
+  environment:
+    - DB_USER=redmine
+    - DB_PASS=itisredmine
+    - DB_NAME=redmine_production
+  ports:
+    - "10080:3000"
+---------------------------------
+
+执行 docker-compose up -d
+localhost:10080

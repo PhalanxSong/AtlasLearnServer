@@ -1,0 +1,13 @@
+http://47.94.243.224:10080
+
+user:songlingyi
+mail:songlingyi@aliyun.com
+
+user:guest
+passwd:welcomeguest
+mail:451768447@qq.com
+
+
+
+
+

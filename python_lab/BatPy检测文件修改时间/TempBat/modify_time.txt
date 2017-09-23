@@ -1,0 +1,14 @@
+2017/06/05 10:06, C:\Users\PC\Desktop\TSMOUNT\工作相关\Script\BatPy检测文件修改时间\ExampleFolder\4.txt
+2017/06/05 10:06, C:\Users\PC\Desktop\TSMOUNT\工作相关\Script\BatPy检测文件修改时间\ExampleFolder\1.txt
+2017/06/05 10:06, C:\Users\PC\Desktop\TSMOUNT\工作相关\Script\BatPy检测文件修改时间\ExampleFolder\3.txt
+2017/06/05 20:44, C:\Users\PC\Desktop\TSMOUNT\工作相关\Script\BatPy检测文件修改时间\ExampleFolder\2.txt
+2017/06/05 20:44, C:\Users\PC\Desktop\TSMOUNT\工作相关\Script\BatPy检测文件修改时间\ExampleFolder\IgnoreFolder
+2017/06/06 09:09, C:\Users\PC\Desktop\TSMOUNT\工作相关\Script\BatPy检测文件修改时间\ExampleFolder\ConsiderFolder
+2017/06/05 10:06, C:\Users\PC\Desktop\TSMOUNT\工作相关\Script\BatPy检测文件修改时间\ExampleFolder\ConsiderFolder\3.txt
+2017/06/05 10:06, C:\Users\PC\Desktop\TSMOUNT\工作相关\Script\BatPy检测文件修改时间\ExampleFolder\ConsiderFolder\1.txt
+2017/06/05 10:06, C:\Users\PC\Desktop\TSMOUNT\工作相关\Script\BatPy检测文件修改时间\ExampleFolder\ConsiderFolder\2.txt
+2017/06/05 10:06, C:\Users\PC\Desktop\TSMOUNT\工作相关\Script\BatPy检测文件修改时间\ExampleFolder\ConsiderFolder\4.txt
+2017/06/05 10:06, C:\Users\PC\Desktop\TSMOUNT\工作相关\Script\BatPy检测文件修改时间\ExampleFolder\IgnoreFolder\2.txt
+2017/06/05 10:06, C:\Users\PC\Desktop\TSMOUNT\工作相关\Script\BatPy检测文件修改时间\ExampleFolder\IgnoreFolder\1.txt
+2017/06/05 19:51, C:\Users\PC\Desktop\TSMOUNT\工作相关\Script\BatPy检测文件修改时间\ExampleFolder\IgnoreFolder\3.txt
+2017/06/05 20:44, C:\Users\PC\Desktop\TSMOUNT\工作相关\Script\BatPy检测文件修改时间\ExampleFolder\IgnoreFolder\4.txt
