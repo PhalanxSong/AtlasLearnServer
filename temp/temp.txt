@@ -1,0 +1,6 @@
+/home/docker_mount/redmine:/usr/mnt
+/home/docker_mount/redmine:/usr/src/redmine/mount
+
+docker run -d --name=testvolume -v /home/docker_mount/redmine:/test -it centos /bin/bash
+
+

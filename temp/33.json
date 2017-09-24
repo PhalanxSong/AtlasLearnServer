@@ -1,0 +1,113 @@
+{
+    "StreamConfig": {},
+    "State": {
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "RemovalInProgress": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 137,
+        "Error": "",
+        "StartedAt": "2017-09-23T18:12:05.074313512Z",
+        "FinishedAt": "2017-09-23T18:17:58.985934338Z",
+        "Health": null
+    },
+    "ID": "a370b66545890519631401cf5bfd2c79739f205d12e2f301f041efb8d70ced36",
+    "Created": "2017-09-23T18:03:58.39908546Z",
+    "Managed": false,
+    "Path": "/bin/bash",
+    "Args": [],
+    "Config": {
+        "Hostname": "a370b6654589",
+        "Domainname": "",
+        "User": "",
+        "AttachStdin": false,
+        "AttachStdout": false,
+        "AttachStderr": false,
+        "Tty": true,
+        "OpenStdin": true,
+        "StdinOnce": false,
+        "Env": [
+            "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+        ],
+        "Cmd": [
+            "/bin/bash"
+        ],
+        "Image": "centos",
+        "Volumes": null,
+        "WorkingDir": "",
+        "Entrypoint": null,
+        "OnBuild": null,
+        "Labels": {
+            "build-date": "20170801",
+            "license": "GPLv2",
+            "name": "CentOS Base Image",
+            "vendor": "CentOS"
+        }
+    },
+    "Image": "sha256:328edcd84f1bbf868bc88e4ae37afe421ef19be71890f59b4b2d8ba48414b84d",
+    "NetworkSettings": {
+        "Bridge": "",
+        "SandboxID": "aa8e0b3304a0a4fdf17f949697cbb2c784f570b87eb4a0e4687bdb0ad84dde63",
+        "HairpinMode": false,
+        "LinkLocalIPv6Address": "",
+        "LinkLocalIPv6PrefixLen": 0,
+        "Networks": {
+            "bridge": {
+                "IPAMConfig": null,
+                "Links": null,
+                "Aliases": null,
+                "NetworkID": "b4553f91f737624740b038b8ead11ecf156a832f823ade86ca30fa68bffb92d0",
+                "EndpointID": "",
+                "Gateway": "",
+                "IPAddress": "",
+                "IPPrefixLen": 0,
+                "IPv6Gateway": "",
+                "GlobalIPv6Address": "",
+                "GlobalIPv6PrefixLen": 0,
+                "MacAddress": "",
+                "IPAMOperational": false
+            }
+        },
+        "Service": null,
+        "Ports": null,
+        "SandboxKey": "/var/run/docker/netns/aa8e0b3304a0",
+        "SecondaryIPAddresses": null,
+        "SecondaryIPv6Addresses": null,
+        "IsAnonymousEndpoint": false,
+        "HasSwarmEndpoint": false
+    },
+    "LogPath": "/var/lib/docker/containers/a370b66545890519631401cf5bfd2c79739f205d12e2f301f041efb8d70ced36/a370b66545890519631401cf5bfd2c79739f205d12e2f301f041efb8d70ced36-json.log",
+    "Name": "/testvolume",
+    "Driver": "overlay",
+    "MountLabel": "",
+    "ProcessLabel": "",
+    "RestartCount": 0,
+    "HasBeenStartedBefore": true,
+    "HasBeenManuallyStopped": true,
+    "MountPoints": {
+        "/test": {
+            "Source": "/home/docker_mount/redmine",
+            "Destination": "/test",
+            "RW": true,
+            "Name": "",
+            "Driver": "",
+            "Type": "bind",
+            "Spec": {
+                "Type": "bind",
+                "Source": "/home/docker_mount/redmine",
+                "Target": "/test"
+            }
+        }
+    },
+    "SecretReferences": null,
+    "AppArmorProfile": "",
+    "HostnamePath": "/var/lib/docker/containers/a370b66545890519631401cf5bfd2c79739f205d12e2f301f041efb8d70ced36/hostname",
+    "HostsPath": "/var/lib/docker/containers/a370b66545890519631401cf5bfd2c79739f205d12e2f301f041efb8d70ced36/hosts",
+    "ShmPath": "/var/lib/docker/containers/a370b66545890519631401cf5bfd2c79739f205d12e2f301f041efb8d70ced36/shm",
+    "ResolvConfPath": "/var/lib/docker/containers/a370b66545890519631401cf5bfd2c79739f205d12e2f301f041efb8d70ced36/resolv.conf",
+    "SeccompProfile": "",
+    "NoNewPrivileges": false
+}

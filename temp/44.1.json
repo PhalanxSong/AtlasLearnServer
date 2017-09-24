@@ -1,0 +1,168 @@
+{
+    "StreamConfig": {},
+    "State": {
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "RemovalInProgress": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 1,
+        "Error": "Cannot link to a non running container: /redmine_postgresql_1 AS /redmine_redmine_1/postgresql",
+        "StartedAt": "2017-09-23T17:59:30.928066135Z",
+        "FinishedAt": "2017-09-23T18:00:54.107632614Z",
+        "Health": null
+    },
+    "ID": "ea0976e1ac41867ff4bbbb07877ef075b097bee1cac979435011f18f3edd431a",
+    "Created": "2017-09-22T19:54:37.875680836Z",
+    "Managed": false,
+    "Path": "/docker-entrypoint.sh",
+    "Args": [
+        "rails",
+        "server",
+        "-b",
+        "0.0.0.0"
+    ],
+    "Config": {
+        "Hostname": "ea0976e1ac41",
+        "Domainname": "",
+        "User": "",
+        "AttachStdin": false,
+        "AttachStdout": false,
+        "AttachStderr": false,
+        "ExposedPorts": {
+            "3000/tcp": {}
+        },
+        "Tty": false,
+        "OpenStdin": false,
+        "StdinOnce": false,
+        "Env": [
+            "DB_USER=redmine",
+            "DB_PASS=itisredmine",
+            "DB_NAME=redmine_production",
+            "PATH=/usr/local/bundle/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+            "RUBY_MAJOR=2.4",
+            "RUBY_VERSION=2.4.2",
+            "RUBY_DOWNLOAD_SHA256=748a8980d30141bd1a4124e11745bb105b436fb1890826e0d2b9ea31af27f735",
+            "RUBYGEMS_VERSION=2.6.13",
+            "BUNDLER_VERSION=1.15.4",
+            "GEM_HOME=/usr/local/bundle",
+            "BUNDLE_PATH=/usr/local/bundle",
+            "BUNDLE_BIN=/usr/local/bundle/bin",
+            "BUNDLE_SILENCE_ROOT_WARNING=1",
+            "BUNDLE_APP_CONFIG=/usr/local/bundle",
+            "GOSU_VERSION=1.10",
+            "TINI_VERSION=v0.16.1",
+            "RAILS_ENV=production",
+            "REDMINE_VERSION=3.4.2",
+            "REDMINE_DOWNLOAD_MD5=2980b80e9acc81c01c06adb86eb4f37d"
+        ],
+        "Cmd": [
+            "rails",
+            "server",
+            "-b",
+            "0.0.0.0"
+        ],
+        "ArgsEscaped": true,
+        "Image": "redmine",
+        "Volumes": {
+            "/usr/src/redmine/files": {}
+        },
+        "WorkingDir": "/usr/src/redmine",
+        "Entrypoint": [
+            "/docker-entrypoint.sh"
+        ],
+        "OnBuild": null,
+        "Labels": {
+            "com.docker.compose.config-hash": "e3e190a235a52bd4d1e0ac70d501e822433223776f094c33e8bccd01e0ee50b5",
+            "com.docker.compose.container-number": "1",
+            "com.docker.compose.oneoff": "False",
+            "com.docker.compose.project": "redmine",
+            "com.docker.compose.service": "redmine",
+            "com.docker.compose.version": "1.9.0"
+        }
+    },
+    "Image": "sha256:40c8fcfb52aa31c46f1504243b3c4cc321bafc45a9e0429540d74fbf6c960323",
+    "NetworkSettings": {
+        "Bridge": "",
+        "SandboxID": "ffaefdb4ae593b1b6974fd7f42cd08f57dc1ced8dbb2cd031260002164d829cc",
+        "HairpinMode": false,
+        "LinkLocalIPv6Address": "",
+        "LinkLocalIPv6PrefixLen": 0,
+        "Networks": {
+            "bridge": {
+                "IPAMConfig": null,
+                "Links": null,
+                "Aliases": null,
+                "NetworkID": "b4553f91f737624740b038b8ead11ecf156a832f823ade86ca30fa68bffb92d0",
+                "EndpointID": "73f4707e5bf1669fadaffd0113c7748caa92fe803414f3af1ebfe7bea9e65e6c",
+                "Gateway": "172.18.0.1",
+                "IPAddress": "172.18.0.2",
+                "IPPrefixLen": 16,
+                "IPv6Gateway": "",
+                "GlobalIPv6Address": "",
+                "GlobalIPv6PrefixLen": 0,
+                "MacAddress": "02:42:ac:12:00:02",
+                "IPAMOperational": false
+            }
+        },
+        "Service": null,
+        "Ports": {
+            "3000/tcp": [
+                {
+                    "HostIp": "0.0.0.0",
+                    "HostPort": "10080"
+                }
+            ]
+        },
+        "SandboxKey": "/var/run/docker/netns/ffaefdb4ae59",
+        "SecondaryIPAddresses": null,
+        "SecondaryIPv6Addresses": null,
+        "IsAnonymousEndpoint": false,
+        "HasSwarmEndpoint": false
+    },
+    "LogPath": "/var/lib/docker/containers/ea0976e1ac41867ff4bbbb07877ef075b097bee1cac979435011f18f3edd431a/ea0976e1ac41867ff4bbbb07877ef075b097bee1cac979435011f18f3edd431a-json.log",
+    "Name": "/redmine_redmine_1",
+    "Driver": "overlay",
+    "MountLabel": "",
+    "ProcessLabel": "",
+    "RestartCount": 0,
+    "HasBeenStartedBefore": true,
+    "HasBeenManuallyStopped": false,
+    "MountPoints": {
+        "/mount": {
+            "Source": "/home/docker_mount/redmine",
+            "Destination": "/mount",
+            "RW": true,
+            "Name": "",
+            "Driver": "",
+            "Type": "bind",
+            "Spec": {
+                "Type": "bind",
+                "Source": "/home/docker_mount/redmine",
+                "Target": "/test"
+            }
+        },
+        "/usr/src/redmine/files": {
+            "Source": "",
+            "Destination": "/usr/src/redmine/files",
+            "RW": true,
+            "Name": "2147de03894d8775cdce126724f9997938ee471c09c6677e783c93a69851a575",
+            "Driver": "local",
+            "Type": "volume",
+            "Spec": {
+                "Type": "volume",
+                "Target": "/usr/src/redmine/files"
+            }
+        }
+    },
+    "SecretReferences": null,
+    "AppArmorProfile": "",
+    "HostnamePath": "/var/lib/docker/containers/ea0976e1ac41867ff4bbbb07877ef075b097bee1cac979435011f18f3edd431a/hostname",
+    "HostsPath": "/var/lib/docker/containers/ea0976e1ac41867ff4bbbb07877ef075b097bee1cac979435011f18f3edd431a/hosts",
+    "ShmPath": "/var/lib/docker/containers/ea0976e1ac41867ff4bbbb07877ef075b097bee1cac979435011f18f3edd431a/shm",
+    "ResolvConfPath": "/var/lib/docker/containers/ea0976e1ac41867ff4bbbb07877ef075b097bee1cac979435011f18f3edd431a/resolv.conf",
+    "SeccompProfile": "",
+    "NoNewPrivileges": false
+}

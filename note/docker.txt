@@ -45,6 +45,9 @@ docker run -i -t centos /bin/bash
 // 进入指定容器
 docker attach { container id / name }
 
+// 进入指定容器 且退出时不会自动停止容器
+docker exec -it {container id} /bin/bash
+
 // 退出交互容器
 exit
 
@@ -55,6 +58,12 @@ docker run --detach centos ping ninghao.net
 
 // 跟踪查看 log
 docker logs --follow { id / name }
+
+// 保存镜像
+docker save {image} > /home/save.tar
+
+// 读取镜像
+docker load < /home/save.tar
 
 // 创建本地镜像
 // 由 docker images 查看
@@ -150,6 +159,8 @@ networks:
 volumes:
   nest:
     driver: local
+
+---------------------------------------------------------
 
 # xSpace asset server
 version: '2'
