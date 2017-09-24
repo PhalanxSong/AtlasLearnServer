@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VueDemo</title>
+    <script src="./node_modules/vue/dist/vue.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div v-if="welcome_if" v-bind:title="title">
+            welcome_if : {{ message }}
+        </div>
+        <div v-show="welcome_show" v-bind:title="title">
+            welcome_show : {{ message }}
+        </div>
+        <button v-on:click="logMessage">logMessage 按钮</button>
+        <input v-model="message">
+        <ol>
+            <li v-for="comment in comments">{{comment.content}}</li>
+        </ol>
+        <ol>
+            <comment v-for="comment in comments" v-bind:comment="comment"></comment>
+        </ol>
+    </div>
+    <script src="./index.js" charset="utf-8"></script>
+</body>
+
+</html>
