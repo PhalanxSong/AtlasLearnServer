@@ -1,0 +1,7 @@
+Compile IOS Error on Windows :
+
+TLS Allocator ALLOC_TEMP_THREAD, underlying allocator ALLOC_TEMP_THREAD has unfreed allocations
+
+https://www.reddit.com/r/Unity3D/comments/65419d/tls_allocator_alloc_temp_thread_underlying/.compact
+http://tieba.baidu.com/p/5266729486
+https://issuetracker.unity3d.com/issues/tls-allocator-errors-followed-by-an-editor-crash-when-instantiating-objects-with-particle-effects

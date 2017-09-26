@@ -1,0 +1,202 @@
+SpatialTreeFantasy
+
+-------------------------------------------------------------------
+
+SpatialTreeType:
+1.Quadtree
+2.Octree
+
+-------------------------------------------------------------------
+
+空间树的大小、中心位置、深度怎么确定?
+1.中心位置默认 (0,0,0)，大小和深度有最小值，具体值需要根据实际情况做测试调整，但是最小大小也会是一个较大的区域（UE4 30000），树的叶子节点的大小预计会在 1000 这个量级上。
+2.非默认的情况，由存档中 Entity 信息计算树的 大小、中心位置，深度自适应为使叶子节点大小接近1000这个量级。
+
+-------------------------------------------------------------------
+
+空间树 的 叶子节点 里 可以存放什么东西?
+1.Entity ID + Entity Ptr
+2.Entity ID + Entity Json
+
+-------------------------------------------------------------------
+
+空间树如何更新?
+1.在工作空间中，任何情况下均存在两个空间树，静态空间树 和 动态空间树。
+2.Entity 有 Comp 反映其是 动态的 还是 静态的。
+3.静态空间树 不需要 tick 更新，可以提供 refresh 方法。
+4.动态空间树 需要 tick 更新，每帧更新。
+
+-------------------------------------------------------------------
+
+SpatialTreeComp
+-- stored
+bAbsoluteDynamic
+bSpawnDelay
+-- runtime
+bIsDynamic
+bIsInShowArea
+
+-------------------------------------------------------------------
+
+空间树行为逻辑示意：
+
+准备工作：
+UnitRegistry 中存在对 Entity 的索引
+
+AllEntity
+? AllDynamicEntity
+
+Tree API:
+Add(entity id, entity ptr)
+Add(entity id, entity json)
+Remove(entity id, predict location)
+IsInShowArea(transform)
+GetEntityInShowArea(location, direction)
+GetNearEntity(location)
+
+1.读取一个存档，在 SpawnEntity 逻辑之前，创建
+DynamicTree
+StaticTree
+
+2.读取存档执行 SpawnEntity 逻辑时，以 对象 EntityJson 为例
+if(bAbsoluteDynamic)
+{
+    // 该 Entity 被标记为 绝对动态 ( 带位移动画 )
+    2.1.1 Spawn Entity as it
+    2.1.2 it->bIsDynamic = true
+    2.1.3 DynamicTree.Add(it)
+}
+else
+{
+    if(!bSpawnDelay)
+    {
+        // 该 Entity 不是 绝对动态 但不能延迟生成 （ 远处的超大静态模型如城堡 ）
+        2.2.1 Spawn Entity as it
+        2.2.2 it->bIsDynamic = false
+        2.2.3 StaticTree.Add(it)
+    }
+    else
+    {
+        // 该 Entity 不是 绝对动态 且可以延迟生成 （ 小的静态模型 ）
+        2.2.1 StaticTree.Add(entityJson)
+    }
+}
+
+3. tree tick 优先级 1
+3.1 DynamicTree.Clear()
+3.2 
+for( it : AllEntity )
+{
+    if(it->bIsDynamic)
+    {
+        DynamicTree.Add(it);
+    }
+}
+
+4. other system tick
+
+TreeEntitySpawnSystem tick 优先级 2
+
+entityEleArray = StaticTree->GetEntityInShowArea()
+for( it : entityEleArray )
+{
+    if( it is entityJson )
+    {
+        Spawn Entity by it as realEntity
+        realEntity->bIsDynamic = false
+        StaticTree.Remove(it , predict location)
+        StaticTree.Add(realEntity)
+    }
+}
+
+TreeInfoUpdateSystem tick 优先级 3
+
+// 此处有很多优化手段
+entityInShowArea.Append( StaticTree->GetEntityInShowArea() // if it->bIsDynamic ignore  )
+entityInShowArea.Append( DynamicTree->GetEntityInShowArea() )
+for( entity it : UnitRegistry::AllEntity )
+{
+    if( it in entityInShowArea )
+    {
+        it->bIsInShowArea = true;
+    }
+    else
+    {
+        it->bIsInShowArea = false;
+    }
+}
+
+// 关于 DynamicTree->GetEntityInShowArea() 的延伸
+// 比如 动画 对 Entity 的 location 操作 是否能仅仅依靠对 Comp 的改变来实现 会影响到这里的实现
+
+EntityShowSystem tick 优先级 4
+
+for( entity it : UnitRegistry::AllEntity )
+{
+    if( it->bIsInShowArea )
+    {
+        it->Show();
+    }
+    else
+    {
+        it->Hidden();
+    }
+}
+
+5.entity it 的 transform 被修改
+
+5.1 离散的修改 ( 拖拽位移 )
+if(!it->bIsDynamic)
+{
+    StaticTree->Remove(it, predict location);
+    StaticTree->Add(it);
+}
+
+5.2 连续的修改 ( 添加动画 )
+if( !it->bIsDynamic )
+{
+    it->bIsDynamic = true;
+    // 是否从 StaticTree 移出 均可
+    DynamicTree.Add(it);
+}
+
+5.3 大量修改
+StaticTree->MarkNeedRefresh();
+
+-------------------------------------------------------------------
+
+以后怎么对新功能做扩展?
+
+以 LOD 为例
+在 SpatialTreeComp 中添加 runtime 字段 lodLevel
+在 TreeInfoUpdateSystem 中添加 对 lodLevel 的更新
+在 优先级 5 的某系统中 获取 lodLevel 并执行相应的逻辑
+
+-------------------------------------------------------------------
+
+某些尚不确定的细节
+1.对于占据多个叶子节点的大型 entity 的存放方式
+    1.1 占据某个非叶子节点
+    1.2 占据多个叶子节点
+
+-------------------------------------------------------------------
+
+在实现上述流程的过程中，我们的系统还缺少什么辅助方法?
+我们的系统还有什么不足，导致空间树相关功能变得复杂。
+
+1.由 Entity ID 获取 Entity ，需要从 TMap 获取以减低复杂度。
+目前实现该过程都是 GetAllEntity 后 遍历获取目标，没有对 Entity 的 记录。
+可行的方案是在 UnitRegistry 或是什么地方， SpawnEntity 时 将 Entity 加入 TMap 。
+
+2.强化 由 Json 获取 Entity 某些信息的功能。
+目前项目中零零散散地存在 由 存档 Json/XML 直接获取该 Entity 信息的代码。
+每一处实现各不相同，较为丑陋。
+目前我看到的有：
+2.1 多处 system 直接通过 RecordID / RecordPath 获取 RecordID / Version / 特定 Comp 信息
+2.2 我的模型缩略图 该处直接获取 EntityJson 并 判断这是一个什么样的 Entity ，直接取字段，逻辑还较为复杂( 是BP?动态模型?基本砖?包裹用的父Entity? )
+需要有一套较为完善的方法，用于直接从 Json 获取 Entity Comp 等信息
+目标是使 从 Entity Ptr 获取信息 和 从 Entity Json 获取信息 的 思路一致、难度一致
+
+3.bSpawnDelay 这个变量的自适应，根据 Entity 自身的一些特质来判断该值。
+
+4.entity 的 BoundBox 的获取
