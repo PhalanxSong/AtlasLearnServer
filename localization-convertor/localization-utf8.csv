@@ -1,0 +1,180 @@
+﻿ID,EN,CN
+LT_New,New,选景
+LT_Open,Open,打开 
+LT_Save,Save,保存 
+LT_Project,Project,项目 
+LT_Exit,Exit,退出 
+LT_Block,Block,砖 
+LT_Model,Model,模型 
+LT_Texture,Texture,材质 
+LT_Paint,Paint,画图 
+LT_Images,Images,相册 
+LT_Image,Image,图像投影 
+LT_Mask,Mask,蒙板 
+LT_Media,Media,多媒体管理 
+LT_Media,Media,多媒体 
+LT_Movement,Movement,动效 
+LT_Tools,Tools,小工具 
+LT_Go,Go,Goto 
+LT_Environment,Environment,环境 
+LT_Clear,Clear,清空世界 
+LT_Setup,Setup,设置 
+LT_Scaling,Scaling,缩放世界 
+LT_Playground,Playground,游乐园 
+LT_Release,Release,发布管理 
+LT_Developing,Developing,开发工具 
+LT_Undo,Undo,撤销 
+LT_Redo,Redo,恢复 
+LT_Help,Help,帮助 
+LT_Editing Mode,Editing Mode,编辑模式 
+LT_Movement Restriction,Movement Restriction,行动限制砖 
+LT_My Model,My Model,我的模型 
+LT_Shared Model,Shared Model,共享模型 
+LT_External Model,External Model,导入模型 
+LT_Moving Model,Moving Model,动态模型 
+LT_Default,Default,默认 
+LT_Ice,Ice,冰 
+LT_Marble,Marble,大理石 
+LT_Cloth,Cloth,布料 
+LT_Board,Board,木板 
+LT_Tree Bark,Tree Bark,树皮 
+LT_Wall,Wall,墙面 
+LT_Glass,Glass,玻璃 
+LT_Colored Glass,Colored Glass,彩色玻璃 
+LT_Plaster,Plaster,石膏毛坯 
+LT_Alabaster,Alabaster,雪花石头 
+LT_Grassland,Grassland,草地 
+LT_Glow,Glow,发光 
+LT_Metal,Metal,金属 
+LT_Thick Brush,Thick Brush,粗笔 
+LT_Fine Brush,Fine Brush,细笔 
+LT_Paint Bucket,Paint Bucket,油漆桶 
+LT_Presentation,Presentation,幻灯片 
+LT_Default,Default,默认 
+LT_Round,Round,圆形 
+LT_Heart,Heart,心形 
+LT_Rectangle,Rectangle,矩形 
+LT_Image Management,Image Management,相册管理 
+LT_Presentation Management,Presentation Management,幻灯片管理 
+LT_Special Effect,Special Effect,特效 
+LT_Appear,Appear,出现 
+LT_Disappear,Disappear,消失 
+LT_Animation,Animation,动画 
+LT_Rotation,Rotation,自转 
+LT_Revolution without Rotation,Revolution without Rotation,公转 
+LT_Revolution with Rotation,Revolution with Rotation,月球公转 
+LT_Customized Track,Customized Track,画轨迹 
+LT_Timeline,Timeline,时间轴 
+LT_Play,Play,播放 
+LT_Pause,Pause,暂停 
+LT_Reset,Reset,归零 
+LT_Fading,Fading,淡入淡出 
+LT_Split,Split,上下左右 
+LT_Float In,Float In,前后 
+LT_Burning,Burning,燃烧 
+LT_Explosion,Explosion,爆炸 
+LT_Delete,Delete,删除动效 
+LT_Event Trigger Mechanism,Event Trigger Mechanism,触发方式 
+LT_Select Event Trigger Mechanism,Select Event Trigger Mechanism,选择触发方式 
+LT_Time,Time,固定时间 
+LT_Tap Object,Tap Object,敲击 
+LT_Trigger Block (grab and pull),Trigger Block (grab and pull),触发砖（可抓出建造）
+LT_Tap Trigger Block,Tap Trigger Block,碰撞触发砖 
+LT_Triggered by Other Block,Triggered by Other Block,其他触发砖触发 
+LT_Starts playing ... seconds after ... is triggered,Starts playing ... seconds after ... is triggered,被...触发后...秒开始播放 
+LT_Trigger Block,Trigger Block,触发砖 
+LT_Set Condition under which Trigger Becomes Valid,Set Condition under which Trigger Becomes Valid,设置生效条件 
+LT_None,None,无 
+LT_Associated with Time,Associated with Time,与固定时间关联 
+LT_Becomes valid ... seconds after ... starts to play,Becomes valid ... seconds after ... starts to play,在...开始播放后...秒生效 
+LT_Associated with Event,Associated with Event,与事件触发关联 
+LT_Becomes valid ... seconds after ... is triggered,Becomes valid ... seconds after ... is triggered,在...被触发后...秒生效 
+LT_OK,OK,确定 
+LT_Cancel,Cancel,取消 
+LT_Insert Node,Insert Node,新节点 
+LT_Move in both directions,Move in both directions,双向动画 
+LT_Without rotation,Without rotation,不旋转 
+LT_Repeat ... times with an interval of ... seconds,Repeat ... times with an interval of ... seconds,重复...次，间隔...秒 
+LT_Counterclockwise,Counterclockwise,反方向 
+LT_Delete Track,Delete Track,删除轨迹 
+LT_Maintain the same angle with track,Maintain the same angle with track,与轨迹保持固定角度 
+LT_Camera,Camera,相机 
+LT_Point Light,Point Light,点光源 
+LT_Spotlight,Spotlight,聚光灯 
+LT_Lightsaber,Lightsaber,激光剑 
+LT_Fly,Fly,喷漆行走 
+LT_Ads,Ads,广告 
+LT_Route Guidance,Route Guidance,路径引导 
+LT_Insert Road Sign,Insert Road Sign,路标 
+LT_Precise Scaling,Precise Scaling,精准缩放 
+LT_Numerical Value,Numerical Value,数值 
+LT_Percentage,Percentage,百分比 
+LT_Lock Ratio,Lock Ratio,锁比例 
+LT_Reset,Reset,重置 
+LT_Done,Done,完成 
+LT_Distance,Distance,激光测距 
+LT_Initial Position Setup,Initial Position Setup,初始小人 
+LT_Default,Default,默认 
+LT_Prairie,Prairie,草原 
+LT_Snowy,Snowy,雪天 
+LT_Sunny,Sunny,阳光 
+LT_Cloudy,Cloudy,多云 
+LT_Overcast,Overcast,阴天 
+LT_Snow,Snow,下雪 
+LT_Fog,Fog,雾 
+LT_Grassland,Grassland,草地 
+LT_Sandy Land,Sandy Land,沙地 
+LT_Snowland,Snowland,雪地 
+LT_Ocean,Ocean,海洋 
+LT_Do you want to delete all objects?,Do you want to delete all objects?,您确定要删除所有物体吗？ 
+LT_Yes,Yes,确定 
+LT_No,No,取消 
+LT_Menu Setup,Menu Setup,菜单管理 
+LT_Gravity (All blocks and models will fall.),Gravity (All blocks and models will fall.),有重力（所有砖和模型会有重力、会下落） 
+LT_Magnetics (Blocks and models are automatically attracted and aligned when they are placed close enough.),Magnetics (Blocks and models are automatically attracted and aligned when they are placed close enough.),有磁吸（砖或模型靠近时产生磁吸、对齐） 
+"LT_Orthogonal Correction (Blocks and models are automatically aligned along the x, y and z axes.)","Orthogonal Correction (Blocks and models are automatically aligned along the x, y and z axes.)",正交校正（砖和模型与x、y、z轴自动对齐） 
+LT_Display Size,Display Size,显示尺寸 
+LT_Scaling (Allow models to scale up or down),Scaling (Allow models to scale up or down),缩放（支持与模型的缩放） 
+LT_Size of scaling blocks,Size of scaling blocks,缩放块大小 
+LT_Large,Large,大 
+LT_Medium,Medium,中 
+LT_Small,Small,小 
+LT_Scaling Projection (Objects can be modified out of the reach of controller.),Scaling Projection (Objects can be modified out of the reach of controller.),缩放投影（可超过手柄触及范围） 
+LT_Collision (Player is not allowed to go through concrete objects like a wall and a block.),Collision (Player is not allowed to go through concrete objects like a wall and a block.),玩家碰撞（用户不能穿过墙、砖等有型物体） 
+LT_Autosave in every ... minst,Autosave in every ... minst,自动存档autosave每...分钟 
+LT_Layout,Layout,布局 
+LT_Open,Open,打开 
+LT_Save,Save,保存 
+LT_Project,Project,项目 
+LT_Images,Images,相册 
+LT_Media,Media,多媒体 
+LT_Browse Published Scenes,Browse Published Scenes,浏览发布 
+LT_My Model,My Model,我的模型 
+LT_Tour,Tour,自动游览 
+LT_Entrance of xBrowser,Entrance of xBrowser,xBrowser入口 
+LT_Array,Array,阵列 
+LT_Particle System,Particle System,粒子效果 
+LT_Testing,Testing,测试 
+LT_Gaze Pointer,Gaze Pointer,注视点击 
+LT_Follow,Follow,跟随 
+LT_Publish,Publish,发布 
+LT_Browse Published,Browse Published,浏览已发布 
+"LT_The publishing process has begun. Since the process can take some time, the system will send you a notification once the process is complete.","The publishing process has begun. Since the process can take some time, the system will send you a notification once the process is complete.","开始发布，发布过程由于上传资源将持续一段时间,发布完成后系统将使用消息队列通知您。 "
+LT_Module Switch,Module Switch,模块开关 
+LT_Debugging Tools,Debugging Tools,调试信息 
+LT_FPS Statistics,FPS Statistics,FPS开关 
+LT_Show Collision,Show Collision,碰撞信息 
+LT_Copy,Copy,复制 
+LT_Paste,Paste,粘贴 
+LT_Group,Group,成组 
+LT_Ungroup,Ungroup,取消成组 
+LT_Save to My Model,Save to My Model,存至我的模型 
+LT_Lock,Lock,锁定 
+LT_Array,Array,阵列 
+LT_Scaling,Scaling,缩放 
+LT_Movement,Movement,动效 
+LT_Straight Line,Straight Line,直线 
+LT_Circle,Circle,圆形 
+LT_Quantity,Quantity,数量 
+LT_Done,Done,完成 
+LT_Cancel,Cancel,取消 

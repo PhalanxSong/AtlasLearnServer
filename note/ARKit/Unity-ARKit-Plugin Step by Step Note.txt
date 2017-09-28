@@ -1,0 +1,94 @@
+ARKit and how it works at a high level  
+(https://developer.apple.com/documentation/arkit/understanding_augmented_reality)  
+  
+案例场景:  
+UnityARKitScene  
+  
+1.Create AR Session  
+  
+UnityARCameraManager.cs ->   
+m_session = UnityARSessionNativeInterface.GetARSessionNativeInterface();  
+  
+m_session  
+    RunWithConfig(config)
+    RunWithConfigAndOption(config, option)
+
+2.Session Config
+
+m_session.RunWithConfig(config)
+
+3DOF : ARKitSessionConfiguration
+        public UnityARAlignment alignment;
+        public bool getPointCloudData;
+        public bool enableLightEstimation;
+
+6DOF : ARKitWorldTrackingSessionConfiguration
+        public UnityARAlignment alignment;
+        public UnityARPlaneDetection planeDetection;
+        public bool getPointCloudData;
+        public bool enableLightEstimation;
+
+3.Add UnityARVideo to main camera
+
+参见 UnityARCameraManager ->
+    SetCamera(Camera newCamera)
+    SetupNewCamera(Camera newCamera)
+
+作用解释:
+every frame, it takes the two textures that make up the video that ARKit wants to display from the camera, and uses the YUVMaterial shader to combine them into the background that is rendered by the camera. (see UnityARVideo.cs)
+
+4.Session Update
+
+Matrix4x4 matrix = m_session.GetCameraPose();
+m_camera.transform.localPosition = UnityARMatrixOps.GetPosition(matrix);
+m_camera.transform.localRotation = UnityARMatrixOps.GetRotation(matrix);
+
+m_camera.projectionMatrix = m_session.GetCameraProjection();
+
+-------------------------------------------------------------
+
+以上完成后就可以在空间中观看场景
+
+-------------------------------------------------------------
+
+Interaction
+
+5.HitTest
+ARKit provided HitTest API to interact with the scene.
+(https://developer.apple.com/documentation/arkit/arhittestresult.resulttype)
+参见 UnityARHitTestExample.cs
+
+m_session.HitTest(point, resultTypes)
+
+ARHitTestResultType
+    /** Result type from intersecting the nearest feature point. */
+    ARHitTestResultTypeFeaturePoint = (1 << 0),
+    /** Result type from detecting and intersecting a new horizontal plane. */
+    ARHitTestResultTypeHorizontalPlane = (1 << 1),
+    /** Result type from detecting and intersecting a new vertical plane. */
+    ARHitTestResultTypeVerticalPlane = (1 << 2),
+    /** Result type from intersecting with an existing plane anchor. */
+    ARHitTestResultTypeExistingPlane = (1 << 3),
+    /** Result type from intersecting with an existing plane anchor, taking into account the plane's extent. */
+    ARHitTestResultTypeExistingPlaneUsingExtent = (1 << 4)
+
+6.Plane Detection
+
+If you have asked ARKit to do plane detection for you in the session configuration,
+you can hook into the events that ARKit returns for those via the plugin: 
+    UnityARSessionNativeInterface.ARAnchorAddedEvent
+    UnityARSessionNativeInterface.ARAnchorUpdatedEvent
+    UnityARSessionNativeInterface.ARAnchorRemovedEvent
+
+see UnityARAnchorManager.cs
+
+7.Point Cloud Data
+(https://developer.apple.com/documentation/arkit/arpointcloud)
+event : UnityARSessionNativeInterface.ARFrameUpdatedEvent
+see PointCloudParticleExample.cs
+
+8.Light Estimation
+(https://developer.apple.com/documentation/arkit/arlightestimate)
+m_session.GetARAmbientIntensity()
+
+see UnityARAmbient.cs
