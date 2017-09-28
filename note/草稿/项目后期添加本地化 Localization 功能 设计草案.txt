@@ -1,0 +1,36 @@
+Editor Preference : Language
+
+--------------------------------------------------
+
+c++
+
+AppCore::Instance()->GetLocalizationManager()
+
+LocalizationManager API:
+1.GetLanguage()
+2.SetLanguage(inLanguage)
+3.GetLocalizedText(inTextKey,arg1,arg2...)
+
+Localization Json:
+EN.json
+CN.json
+UK.json
+
+LocalizationManager has an event emiter.
+Anywhere need refresh text should listen to this event emiter.
+
+项目中后期添加 本地化 功能:
+如果前期没有对需要本地化的 Text 做标识，而是使用原生 string ，基本上重复性工作无法避免。
+如果前期有做标识，考虑项目整体正则。
+
+--------------------------------------------------
+
+js react
+
+npm install react-localization --save
+相关说明参考 npm 模块 官方文档
+
+基本使用方式:
+在 app.js 启动主页面 route 前 initLocalization()
+在 componentDidMount 中绑定对 localizationEventEmitter 事件 on_language_changed 的 监听
+this.setState({}); 刷新页面
