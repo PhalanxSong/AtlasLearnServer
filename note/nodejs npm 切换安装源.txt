@@ -2,3 +2,6 @@
 2. nrm ls 列出可用源
 3. nrm test 测试各类源的速度
 4. nrm use taobao
+
+直接使用 taobao
+npm install -g cnpm --registry=https://registry.npm.taobao.org
