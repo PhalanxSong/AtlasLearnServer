@@ -1,0 +1,39 @@
+{
+  "name": "phalanx-asset-server",
+  "version": "0.0.1",
+  "description": "PhalanxSong's personal asset server",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "author": "PhalanxSong <songlingyi@aliyun.com>",
+  "dependencies": {
+    "basic-auth-connect": "^1.0.0",
+    "bluebird": "^3.4.1",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "helmet": "^2.1.2",
+    "jsonwebtoken": "^7.3.0",
+    "lodash": "^4.15.0",
+    "mongo-express": "^0.33.0",
+    "mongoose": "^4.5.9",
+    "morgan": "^1.7.0",
+    "multer": "^1.2.0",
+    "shortid": "^2.2.6",
+    "swagger-tools": "^0.10.1",
+    "unzip2": "^0.2.5",
+    "uuid": "^2.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^3.2.2",
+    "eslint-config-airbnb": "^10.0.0",
+    "eslint-plugin-import": "^1.12.0",
+    "eslint-plugin-jsx-a11y": "^2.0.1",
+    "eslint-plugin-react": "^6.0.0",
+    "nodemon": "^1.9.2"
+  }
+}

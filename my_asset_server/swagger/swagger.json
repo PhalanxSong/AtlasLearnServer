@@ -1,0 +1,395 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "0.0.1-20161230",
+        "title": "TSM Asset Server API"
+    },
+    "paths": {
+        "/asset": {
+            "get": {
+                "description": "获取所有资源列表\n",
+                "tags": [
+                    "Asset"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Asset"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "新增一个资源\n",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "parameters": [{
+                        "name": "name",
+                        "in": "formData",
+                        "description": "资源名称",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "file",
+                        "in": "formData",
+                        "description": "资源文件",
+                        "type": "file",
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "Asset",
+                    "Upload"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "创建成功",
+                        "schema": {
+                            "$ref": "#/definitions/Asset"
+                        }
+                    },
+                    "default": {
+                        "description": "发生未定义错误",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/asset/{id}": {
+            "get": {
+                "description": "获取对应id的资源信息",
+                "tags": [
+                    "Asset"
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "type": "string",
+                    "description": "资源id",
+                    "required": true
+                }],
+                "responses": {
+                    "200": {
+                        "description": "查询成功，返回查询结果",
+                        "schema": {
+                            "$ref": "#/definitions/Asset"
+                        }
+                    },
+                    "404": {
+                        "description": "未查询到结果"
+                    },
+                    "default": {
+                        "description": "发生未定义错误",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/asset/file/{id}": {
+            "get": {
+                "description": "根据id下载资源文件",
+                "tags": [
+                    "Asset",
+                    "Download"
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "资源id",
+                    "type": "string",
+                    "required": true
+                }],
+                "responses": {
+                    "200": {
+                        "description": "成功，获取文件",
+                        "schema": {
+                            "type": "file"
+                        }
+                    },
+                    "404": {
+                        "description": "未找到资源"
+                    },
+                    "default": {
+                        "description": "未定义错误",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/asset-record": {
+            "get": {
+                "description": "获取所有资源和存档的链接关系",
+                "tags": [
+                    "Asset",
+                    "Record"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "$ref": "#/definitions/AssetRecord"
+                        }
+                    },
+                    "default": {
+                        "description": "未定义错误",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "新增（或更新）一条资源和存档的链接记录",
+                "tags": [
+                    "Asset",
+                    "Record"
+                ],
+                "parameters": [{
+                    "name": "ar",
+                    "in": "body",
+                    "description": "一条记录",
+                    "schema": {
+                        "$ref": "#/definitions/AssetRecord"
+                    },
+                    "required": true
+                }],
+                "responses": {
+                    "200": {
+                        "description": "新增（或）更新成功，返回更新后的记录",
+                        "schema": {
+                            "$ref": "#/definitions/AssetRecord"
+                        }
+                    },
+                    "422": {
+                        "description": "缺少必须的参数"
+                    },
+                    "default": {
+                        "description": "未定义错误",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/dlc": {
+            "get": {
+                "description": "获取所有DLC资源列表\n",
+                "tags": [
+                    "DLC"
+                ],
+                "parameters": [{
+                        "name": "appName",
+                        "in": "path",
+                        "type": "string",
+                        "description": "应用名称，比如xBuilder/xBrowser",
+                        "required": true
+                    },
+                    {
+                        "name": "platform",
+                        "in": "path",
+                        "type": "string",
+                        "description": "Cook的编码格式，WindowsNoEditor/Android_ETC2",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/DLC"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "新增一个DLC\n",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "parameters": [{
+                        "name": "appName",
+                        "in": "formData",
+                        "description": "应用名称,如xBuilder",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "platform",
+                        "in": "formData",
+                        "description": "cook平台，如WindowsNoEditor",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "description": "dlc名称",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "version",
+                        "in": "formData",
+                        "description": "DLC版本名称，如0.1.1",
+                        "type": "string",
+                        "required": true
+
+                    },
+                    {
+                        "name": "file",
+                        "in": "formData",
+                        "description": "DLC压缩文件，zip包",
+                        "type": "file",
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "DLC",
+                    "Upload"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "创建成功",
+                        "schema": {
+                            "$ref": "#/definitions/DLC"
+                        }
+                    },
+                    "default": {
+                        "description": "发生未定义错误",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Asset": {
+            "type": "object",
+            "description": "资源文件的Model",
+            "properties": {
+                "_id": {
+                    "type": "string",
+                    "description": "唯一标示符，使用uuid生成"
+                },
+                "_shortid": {
+                    "type": "string",
+                    "description": "短id，保留为以后使用"
+                },
+                "recordUrl": {
+                    "type": "string",
+                    "description": "素材存储（服务器索引使用，客户端可以忽略）"
+                },
+                "creatorId": {
+                    "type": "string",
+                    "description": "创建者id"
+                }
+            }
+        },
+        "AssetRecord": {
+            "type": "object",
+            "description": "资源文件和存档的链接计数",
+            "required": [
+                "recordId",
+                "assetId",
+                "linkCount"
+            ],
+            "properties": {
+                "_id": {
+                    "type": "string",
+                    "description": "唯一标示符，使用uuid生成"
+                },
+                "_shortid": {
+                    "type": "string",
+                    "description": "短id，保留为以后使用"
+                },
+                "recordId": {
+                    "type": "string",
+                    "description": "存档id"
+                },
+                "assetId": {
+                    "type": "string",
+                    "description": "资源文件id"
+                },
+                "linkCount": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "资源文件在该存档中的链接数"
+                }
+            }
+        },
+        "DLC": {
+            "type": "object",
+            "description": "DLC文件的Model",
+            "properties": {
+                "_id": {
+                    "type": "string",
+                    "description": "唯一标示符，使用uuid生成"
+                },
+                "_shortid": {
+                    "type": "string",
+                    "description": "短id，保留为以后使用"
+                },
+                "manifestUrl": {
+                    "type": "string",
+                    "description": "mani fest url"
+                },
+                "cloudUrl": {
+                    "type": "string",
+                    "description": "cloud url"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "描述"
+                },
+                "appName": {
+                    "type": "string",
+                    "description": "应用名称"
+                },
+                "platform": {
+                    "type": "string",
+                    "description": "cook环境"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "dlc版本"
+                }
+            }
+        },
+        "Error": {
+            "type": "object",
+            "description": "错误对象",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "description": "错误消息"
+                },
+                "stack": {
+                    "type": "string",
+                    "description": "错误调用栈"
+                },
+                "details": {
+                    "type": "object",
+                    "description": "错误详情（如果有）"
+                }
+            }
+        }
+    }
+}

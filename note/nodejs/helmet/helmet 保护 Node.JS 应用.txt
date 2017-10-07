@@ -1,0 +1,90 @@
+Helmet是一系列帮助增强Node.JS之Express/Connect等Javascript Web应用安全的中间件。
+
+一些著名的对Web攻击有XSS跨站脚本， 脚本注入 clickjacking 以及各种非安全的请求等对Node.js的Web应用构成各种威胁，使用Helmet能帮助你的应用避免这些攻击。
+
+安装Helmet:
+npm install helmet --save
+
+-------------------------------------------------------------------
+
+Helmet安全功能有:
+1crossdomain是用来服务crossdomain.xml
+
+2.contentSecurityPolicy是设置Content Security Policy，防止XSS攻击。
+
+3.hidePoweredBy可以移除 X-Powered-By 头部
+
+4.hsts用于 HTTP Strict Transport Security
+
+5.ieNoOpen设置IE8+的 sets X-Download-Options 
+
+6.noCache 失效客户端缓存
+
+7.noSniff能避免客户端进行MIME类型进行嗅探。
+
+8.frameguard阻止clickjacking
+
+9.xssFilter能够增加一些小的XSS保护功能。
+
+调用app.use(helmet());可以缺省激活上述9项功能的7项，排除的两项是contentSecurityPolicy 和noCache。
+
+-------------------------------------------------------------------
+
+在Express使用Helmet:
+
+// Load required modules
+var express = require('express');
+var helmet = require('helmet');
+
+// Create our Express application
+var app = express();
+
+// Simple endpoint
+app.get('/', function(req, res) {
+  res.send('Time to secure your application...');
+});
+
+// Use helmet
+app.use(helmet());
+
+// Start the server
+app.listen(3000);
+
+-------------------------------------------------------------------
+
+使用Content Security Policy (CSP) 防御XSS攻击案例代码：
+
+// Load required modules
+var express = require('express');
+var helmet = require('helmet');
+
+// Create our Express application
+var app = express();
+
+// Implement CSP with Helmet
+app.use(helmet.csp({
+  defaultSrc: ["'self'"],
+  scriptSrc: ['*.google-analytics.com'],
+  styleSrc: ["'unsafe-inline'"],
+  imgSrc: ['*.google-analytics.com'],
+  connectSrc: ["'none'"],
+  fontSrc: [],
+  objectSrc: [],
+  mediaSrc: [],
+  frameSrc: []
+}));
+
+// Simple endpoint
+app.get('/', function(req, res) {
+  res.send('Time to secure your application...');
+});
+
+// Start the server
+app.listen(3000);
+
+-------------------------------------------------------------------
+
+具体使用和说明除了参考其Github说明外，还可以参考这篇文章:
+
+Protect Your Node App's Noggin With Helmet
+http://scottksmith.com/blog/2014/09/21/protect-your-node-apps-noggin-with-helmet/

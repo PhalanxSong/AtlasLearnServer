@@ -1,0 +1,39 @@
+在 mongoose 中使用 bluebird
+
+http://blog.csdn.net/DeepLies/article/details/52796951
+
+
+声明使用 bluebird :
+
+var mongoose=require('mongoose');
+var bluebird = require('bluebird');
+mongoose.Promise=bluebird;
+
+
+查询方法:
+
+function getWeatherCache(cityname){
+    var getResult;
+    //这里使用了bluebird
+    getResult=WeatherCache.findOne({'city.name':cityname})
+        .exec()
+        .then(function(promiseResult){
+            // 需要将结果返回
+            return promiseResult;
+        })
+        .error(function(error){
+            return 'Promise Error:'+error;
+        })
+    //这个promise对象需要返回
+    return getResult;
+}
+
+
+使用对象:
+
+getWeatherCache(city)
+    .then(function(promiseData){....})
+    .error(function(error){....})
+
+其中，.then() 随便写几个都行。
+这个时候，promiseData 就是你从数据库中请求得到的数据。
